@@ -22,8 +22,15 @@ const running = () => {
   app.use("/api/id", exampleProxy);
   app.use("/api/public", exampleProxy2);
   app.use(express.static(__dirname + "/"));
+
+  app.use("/products", (req, res) => {
+    res.sendFile("/products.html", { root: __dirname });
+  });
+  app.use("/checkouts", (req, res) => {
+    res.sendFile("/checkouts.html", { root: __dirname });
+  });
   app.use("/", (req, res) => {
-    res.sendFile("/" + req.originalUrl + ".html", { root: __dirname });
+    res.sendFile("/clone.html", { root: __dirname });
   });
 
   app.listen(8080);
